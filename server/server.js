@@ -1,3 +1,5 @@
+require('dotenv').config({ path: '../.env' })
+
 const express = require("express");
 const { createServer } = require("http");
 const { Server } = require("socket.io");
@@ -5,11 +7,10 @@ const { Server } = require("socket.io");
 const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, {   cors: {
-        origin: "http://localhost:3333",
+        origin: `${process.env.VUE_APP_HOSTNAME}:${process.env.VUE_APP_HOSTNAME_PORT}`,
         methods: ["GET", "POST"],
-    } });
+    }});
 const cors = require('cors')
-const port = 3011
 app.use(cors())
 
 io.on("connection", (socket) => {
@@ -33,8 +34,7 @@ io.on("connection", (socket) => {
 
 });
 
-
-httpServer.listen(port);
+httpServer.listen(process.env.VUE_APP_SERVER_SOCKET_IO_ENDPOINT_PORT);
 
 
 
