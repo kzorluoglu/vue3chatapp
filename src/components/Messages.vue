@@ -14,16 +14,24 @@
 </template>
 
 <script>
+import io from 'socket.io-client';
+
 export default {
   name: "Message",
   data() {
     return {
+      socket: io(process.env.VUE_APP_SOCKET_ENDPOINT),
     }
   },
   computed: {
     messages() {
       return this.$store.state.messages;
     }
+  },
+  created() {
+    this.$soketio.on('new-message', (data) => {
+      this.$store.commit('addMessage', data);
+    })
   }
 }
 </script>

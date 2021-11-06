@@ -6,6 +6,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'User',
   data() {
@@ -17,9 +18,12 @@ export default {
   },
   methods: {
     saveName() {
-      this.$store.commit('updateUser', {name: this.input.name, loginDate: new Date().toLocaleString()})
+      let user = {name: this.input.name, loginDate: new Date().toLocaleString()}
+      this.$soketio.emit('add-user', user);
+      this.$store.commit('updateUser', user)
     },
     logout(){
+      this.$soketio.emit('remove-user', this.user);
       this.$store.commit('updateUser', {})
     }
   },

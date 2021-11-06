@@ -7,6 +7,17 @@
   <router-view/>
 </template>
 
+<script>
+
+export default {
+  name: 'App',
+  created() {
+  },
+  beforeUnmount() {
+  }
+}
+</script>
+
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

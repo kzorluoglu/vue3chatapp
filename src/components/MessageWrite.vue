@@ -6,17 +6,18 @@
 </template>
 
 <script>
+
 export default {
   name: "MessageWrite",
   data(){
     return {
-      message: ''
+      message: '',
     }
   },
   methods: {
     sendMessage() {
       let message = {message: this.message, user: this.$store.state.user, created_at: new Date().toLocaleString()}
-      this.$store.commit('addMessage', message);
+      this.$soketio.emit('add-message', message)
       this.message = '';
     }
   }
