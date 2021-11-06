@@ -27,8 +27,14 @@ node server.js // or use nodemon, nodemon server.js
 ```
 
 ### Compiles and minifies for production
+Client 
 ```
 npm run build
+```
+Server:
+```
+cd server
+node server.js
 ```
 
 ### Lints and fixes files
